@@ -1,0 +1,57 @@
+
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    z-index: 1000; /* устанавливаем z-index, чтобы навбар находился поверх остального содержимого */
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+.logo {
+    margin-right: 200px; /* Отступ от логотипа */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1; /* Равномерное распределение пространства */
+}
+
+.nav-links li {
+    margin-right: 20px;
+    flex-grow: 1; /* Равномерное распределение пространства между кнопками */
+}
+
+.nav-links li:last-child {
+    margin-right: 200px; /* Отступ от края навбара */
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ff4500;
+}
+
+/* Добавляем стили для активной ссылки */
+.nav-links li a.active {
+    color: red;
+    /* Измените стили, как вам нужно */
+  }
+  
+
+
