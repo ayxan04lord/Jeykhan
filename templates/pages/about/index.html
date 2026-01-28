@@ -1,0 +1,361 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block title %}Haqqında -
+Ceyhan Nur{% endblock %} {% block description %}Peşəkar chef və restoran
+idarəçiliği mütəxəssisi Ceyhan Nur haqqında məlumat. Masallı Süfrəsi
+restoranında baş chef kimi təcrübə və nailiyyətlər.{% endblock %} {% block
+content %}
+<!-- Page Header -->
+<section class="page-header" role="banner">
+  <div class="container">
+    <h1 class="page-title">Ceyhan Nur</h1>
+    <p class="page-subtitle">
+      Peşəkar Chef və Restoran İdarəçiliği Mütəxəssisi
+    </p>
+    <p class="page-description">
+      Kulinariya sahəsində təcrübəli ekspert və restoran idarəçiliyi mütəxəssisi
+    </p>
+  </div>
+</section>
+
+<!-- Professional Introduction -->
+<section class="about-intro" role="region" aria-labelledby="intro-heading">
+  <div class="container">
+    <div class="intro-content">
+      <div class="intro-text">
+        <h2 id="intro-heading" class="section-title">Peşəkar Keçmiş</h2>
+        <p class="intro-description">
+          Kulinariya sahəsində uzun illər təcrübəyə malik peşəkar chef və
+          restoran idarəçiliği mütəxəssisiyəm. Hal-hazırda Masallı Süfrəsi
+          restoranında baş chef kimi fəaliyyət göstərirəm.
+        </p>
+        <p class="intro-mission">
+          Məqsədim Azərbaycan mətbəxinin zəngin ənənələrini müasir kulinariya
+          texnikaları ilə birləşdirərək qonaqlarımıza unudulmaz dad təcrübəsi
+          yaşatmaqdır. Hər yeməyin arxasında sevgi və peşəkarlıq durur.
+        </p>
+
+        <div class="intro-stats">
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">İl Təcrübə</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Heyət Üzvü</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1000+</span>
+            <span class="stat-label">Məmnun Müştəri</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-image">
+        <div class="profile-placeholder">
+          <i class="fas fa-user-circle" aria-hidden="true"></i>
+          <p>Ceyhan Nur</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Current Position -->
+<section
+  class="current-position"
+  role="region"
+  aria-labelledby="position-heading"
+>
+  <div class="container">
+    <div class="position-content">
+      <h2 id="position-heading" class="section-title">Hal-hazırki Vəzifə</h2>
+
+      <div class="position-card">
+        <div class="position-header">
+          <div class="position-icon">
+            <i class="fas fa-store" aria-hidden="true"></i>
+          </div>
+          <div class="position-info">
+            <h3>Baş Chef - Masallı Süfrəsi</h3>
+            <p class="position-duration">2020 - Hal-hazırda</p>
+          </div>
+        </div>
+
+        <div class="position-description">
+          <p>
+            Masallı Süfrəsi restoranında baş chef kimi 15+ nəfərlik mətbəx
+            heyətini idarə edirəm. Menyu inkişafından tutmuş keyfiyyət
+            nəzarətinə qədər bütün kulinariya proseslərinin məsuliyyətini
+            daşıyıram.
+          </p>
+
+          <div class="responsibilities">
+            <h4>Əsas Məsuliyyətlər:</h4>
+            <ul>
+              <li>Menyu planlaşdırması və resept inkişafı</li>
+              <li>Mətbəx heyətinin idarə edilməsi və təlimi</li>
+              <li>Keyfiyyət nəzarəti və standartların təmin edilməsi</li>
+              <li>Məhsul təchizatı və xərc idarəetməsi</li>
+              <li>Yeni kulinariya texnikalarının tətbiqi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Professional Experience -->
+<section
+  class="experience-section"
+  role="region"
+  aria-labelledby="experience-heading"
+>
+  <div class="container">
+    <h2 id="experience-heading" class="section-title">Peşəkar Təcrübə</h2>
+    <p class="section-subtitle">
+      Kulinariya sahəsində qazanılmış təcrübə və ekspertlik
+    </p>
+
+    {% if restaurant_experiences %}
+    <div class="experience-grid">
+      {% for experience in restaurant_experiences %} {% include
+      'includes/experience_item.html' %} {% endfor %}
+    </div>
+    {% else %}
+    <!-- Detailed fallback content for experience -->
+    <div class="experience-detailed">
+      <div class="experience-item detailed">
+        <div class="experience-header">
+          <h3>Kulinariya Ekspertliği</h3>
+          <div class="experience-meta">
+            <span class="experience-years">10+ il təcrübə</span>
+            <span class="experience-category">Culinary Arts</span>
+          </div>
+        </div>
+        <p class="experience-description">
+          Müxtəlif mətbəx texnikalarında dərin biliklər və Azərbaycan mətbəxinin
+          ənənəvi reseptlərinin müasir interpretasiyası sahəsində ekspertlik.
+        </p>
+        <ul class="experience-achievements">
+          <li>Ənənəvi Azərbaycan yeməklərinin müasir təqdimatı</li>
+          <li>Beynəlxalq mətbəx texnikalarının mənimsənilməsi</li>
+          <li>Mövsümi məhsullarla yaradıcı menyu inkişafı</li>
+          <li>Keyfiyyət standartlarının yüksək səviyyədə saxlanması</li>
+        </ul>
+      </div>
+
+      <div class="experience-item detailed">
+        <div class="experience-header">
+          <h3>Restoran İdarəçiliği</h3>
+          <div class="experience-meta">
+            <span class="experience-years">8+ il təcrübə</span>
+            <span class="experience-category">Management</span>
+          </div>
+        </div>
+        <p class="experience-description">
+          Mətbəx əməliyyatlarının idarə edilməsi, heyət rəhbərliyi və biznes
+          proseslərinin optimallaşdırılması sahələrində geniş təcrübə.
+        </p>
+        <ul class="experience-achievements">
+          <li>Mətbəx heyətinin səmərəli idarə edilməsi</li>
+          <li>Xərc optimallaşdırması və gəlirlilik artımı</li>
+          <li>Keyfiyyət nəzarəti sistemlərinin tətbiqi</li>
+          <li>Müştəri məmnuniyyətinin artırılması</li>
+        </ul>
+      </div>
+
+      <div class="experience-item detailed">
+        <div class="experience-header">
+          <h3>Komanda Rəhbərliyi</h3>
+          <div class="experience-meta">
+            <span class="experience-years">6+ il təcrübə</span>
+            <span class="experience-category">Leadership</span>
+          </div>
+        </div>
+        <p class="experience-description">
+          Mətbəx heyətinin təlimi, motivasiyası və peşəkar inkişafının təmin
+          edilməsi sahəsində uğurlu təcrübə.
+        </p>
+        <ul class="experience-achievements">
+          <li>Heyət üzvlərinin peşəkar inkişafı</li>
+          <li>Komanda ruhunun formalaşdırılması</li>
+          <li>Yeni işçilərin adaptasiyası və təlimi</li>
+          <li>Performans qiymətləndirilməsi sistemləri</li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Skills and Expertise -->
+<section class="skills-section" role="region" aria-labelledby="skills-heading">
+  <div class="container">
+    <h2 id="skills-heading" class="section-title">Bacarıqlar və Ekspertlik</h2>
+    <p class="section-subtitle">
+      Kulinariya sahəsində dərin biliklər və praktik təcrübə
+    </p>
+
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>Kulinariya Texnikaları</h3>
+        <div class="skills-list">
+          <span class="skill-tag">Ənənəvi Azərbaycan Mətbəxi</span>
+          <span class="skill-tag">Müasir Kulinariya Texnikaları</span>
+          <span class="skill-tag">Menyu İnkişafı</span>
+          <span class="skill-tag">Resept Standartlaşdırması</span>
+          <span class="skill-tag">Keyfiyyət Nəzarəti</span>
+          <span class="skill-tag">Məhsul Təqdimatı</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>İdarəetmə Bacarıqları</h3>
+        <div class="skills-list">
+          <span class="skill-tag">Heyət Rəhbərliyi</span>
+          <span class="skill-tag">Xərc İdarəetməsi</span>
+          <span class="skill-tag">Təchizat Zənciri</span>
+          <span class="skill-tag">Keyfiyyət Sistemləri</span>
+          <span class="skill-tag">Müştəri Xidməti</span>
+          <span class="skill-tag">Biznes Planlaşdırması</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy and Approach -->
+<section
+  class="philosophy-section"
+  role="region"
+  aria-labelledby="philosophy-heading"
+>
+  <div class="container">
+    <div class="philosophy-content">
+      <h2 id="philosophy-heading" class="section-title">İş Fəlsəfəm</h2>
+      <div class="philosophy-grid">
+        <div class="philosophy-item">
+          <div class="philosophy-icon">
+            <i class="fas fa-heart" aria-hidden="true"></i>
+          </div>
+          <h3>Sevgi və Ehtiras</h3>
+          <p>
+            Hər yeməyi sevgi və böyük ehtiras ilə hazırlayıram. Bu, dadın əsas
+            sirridir.
+          </p>
+        </div>
+
+        <div class="philosophy-item">
+          <div class="philosophy-icon">
+            <i class="fas fa-leaf" aria-hidden="true"></i>
+          </div>
+          <h3>Təzə və Keyfiyyətli</h3>
+          <p>
+            Yalnız ən təzə və keyfiyyətli məhsulları istifadə edirəm.
+            Keyfiyyətdən heç vaxt güzəştə getmirəm.
+          </p>
+        </div>
+
+        <div class="philosophy-item">
+          <div class="philosophy-icon">
+            <i class="fas fa-balance-scale" aria-hidden="true"></i>
+          </div>
+          <h3>Ənənə və İnnovasiya</h3>
+          <p>
+            Ənənəvi dadları qoruyub saxlamaqla yanaşı, müasir texnikaları da
+            tətbiq edirəm.
+          </p>
+        </div>
+
+        <div class="philosophy-item">
+          <div class="philosophy-icon">
+            <i class="fas fa-users" aria-hidden="true"></i>
+          </div>
+          <h3>Komanda İşi</h3>
+          <p>
+            Güçlü komanda ruhuna inanıram. Hər kəsin töhfəsi uğurun əsasıdır.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Achievements and Recognition -->
+<section
+  class="achievements-section"
+  role="region"
+  aria-labelledby="achievements-heading"
+>
+  <div class="container">
+    <h2 id="achievements-heading" class="section-title">Nailiyyətlər</h2>
+    <p class="section-subtitle">
+      Peşəkar fəaliyyət dövründə əldə edilmiş uğurlar
+    </p>
+
+    <div class="achievements-grid">
+      <div class="achievement-card">
+        <div class="achievement-icon">
+          <i class="fas fa-trophy" aria-hidden="true"></i>
+        </div>
+        <h3>Müştəri Məmnuniyyəti</h3>
+        <p>
+          Masallı Süfrəsi restoranında müştəri məmnuniyyətinin 40% artırılması
+        </p>
+      </div>
+
+      <div class="achievement-card">
+        <div class="achievement-icon">
+          <i class="fas fa-chart-line" aria-hidden="true"></i>
+        </div>
+        <h3>Satış Artımı</h3>
+        <p>
+          Yeni menyu və keyfiyyət yaxşılaşdırmaları ilə satışların əhəmiyyətli
+          artımı
+        </p>
+      </div>
+
+      <div class="achievement-card">
+        <div class="achievement-icon">
+          <i class="fas fa-users-cog" aria-hidden="true"></i>
+        </div>
+        <h3>Heyət İnkişafı</h3>
+        <p>15+ nəfərlik mətbəx heyətinin peşəkar inkişafının təmin edilməsi</p>
+      </div>
+
+      <div class="achievement-card">
+        <div class="achievement-icon">
+          <i class="fas fa-recycle" aria-hidden="true"></i>
+        </div>
+        <h3>İsraf Azaldılması</h3>
+        <p>Səmərəli idarəetmə ilə məhsul israfının 30% azaldılması</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="about-contact" role="region" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact-content">
+      <h2 id="contact-heading">Əməkdaşlıq üçün</h2>
+      <p>
+        Kulinariya məsləhətçiliği, restoran idarəçiliği və ya Masallı Süfrəsi
+        haqqında daha ətraflı məlumat almaq üçün mənimlə əlaqə saxlayın. Sizinlə
+        işləməyi səbirsizliklə gözləyirəm.
+      </p>
+
+      <div class="contact-action">
+        {% include 'includes/contact_button.html' %}
+      </div>
+
+      <div class="contact-additional">
+        <p class="contact-note">
+          Peşəkar kulinariya xidmətləri və restoran idarəçiliyi sahələrində
+          məsləhət və dəstək təqdim edirəm.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

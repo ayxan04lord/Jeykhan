@@ -1,0 +1,10 @@
+{% load static %}
+<div class="service-card">
+  {% if service.icon %}
+  <div class="service-icon">
+    <i class="{{ service.icon }}" aria-hidden="true"></i>
+  </div>
+  {% endif %}
+  <h3>{{ service.title }}</h3>
+  <p>{{ service.description }}</p>
+</div>

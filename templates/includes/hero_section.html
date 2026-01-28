@@ -1,0 +1,10 @@
+{% load static %}
+<section class="hero">
+  <div class="hero-container">
+    <h1>{{ hero_title|default:"Ceyhan Nur" }}</h1>
+    <p class="hero-subtitle">
+      {{ hero_subtitle|default:"Peşəkar Chef və Restoran İdarəçiliği Mütəxəssisi" }}
+    </p>
+    {% include 'includes/contact_button.html' %}
+  </div>
+</section>

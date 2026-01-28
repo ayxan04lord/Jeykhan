@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <!-- Load static files first -->
+    {% load static %}
+
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO Meta Tags -->
+    <title>
+      {% block title %}Ceyhan Nur - Peşəkar Chef və Restoran Mütəxəssisi{% endblock %}
+    </title>
+    <meta
+      name="description"
+      content="{% block description %}Peşəkar restoran idarəçiliyi və musiqi təlimi xidmətləri. Kulinariya məsləhətçiliği və müğənni inkişafı sahələrində təcrübəli mütəxəssis.{% endblock %}"
+    />
+    <meta
+      name="keywords"
+      content="{% block keywords %}restoran idarəçiliği, musiqi təlimi, kulinariya məsləhətçiliği, müğənni inkişafı, Jeykhan{% endblock %}"
+    />
+    <meta name="author" content="Jeykhan" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="{% block og_title %}Jeykhan - Restoran İdarəçiliyi və Musiqi Təlimi{% endblock %}"
+    />
+    <meta
+      property="og:description"
+      content="{% block og_description %}Peşəkar restoran idarəçiliyi və musiqi təlimi xidmətləri. Kulinariya məsləhətçiliği və müğənni inkişafı sahələrində təcrübəli mütəxəssis.{% endblock %}"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}"
+    />
+    <meta property="og:site_name" content="Jeykhan Portfolio" />
+    <meta property="og:locale" content="az_AZ" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="{% block twitter_title %}Jeykhan - Restoran İdarəçiliyi və Musiqi Təlimi{% endblock %}"
+    />
+    <meta
+      name="twitter:description"
+      content="{% block twitter_description %}Peşəkar restoran idarəçiliyi və musiqi təlimi xidmətləri. Kulinariya məsləhətçiliyi və müğənni inkişafı sahələrində təcrübəli mütəxəssis.{% endblock %}"
+    />
+
+    <!-- Favicon and Icons -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'images/favicon.ico' %}"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static 'images/apple-touch-icon.png' %}"
+    />
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/components.css' %}" />
+
+    {% block extra_css %}{% endblock %}
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ceyhan Nur",
+        "jobTitle": "Peşəkar Chef və Restoran İdarəçiliyi Mütəxəssisi",
+        "description": "Peşəkar restoran idarəçiliyi və musiqi təlimi xidmətləri təqdim edən mütəxəssis",
+        "knowsAbout": [
+          "Restoran İdarəçiliği",
+          "Kulinariya Məsləhətçiliği",
+          "Musiqi Təlimi",
+          "Müğənni İnkişafı"
+        ],
+        "serviceType": ["Restaurant Management", "Music Training"],
+        "areaServed": "Azerbaijan"
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Ana məzmuna keç</a>
+
+    <header role="banner">
+      <nav class="navbar" role="navigation" aria-label="Ana naviqasiya">
+        <div class="nav-container">
+          <div class="nav-logo">
+            <a href="{% url 'home:home' %}" aria-label="Ana səhifəyə qayıt"
+              >Ceyhan Nur</a
+            >
+          </div>
+          <ul class="nav-menu" role="menubar">
+            <li class="nav-item" role="none">
+              <a
+                href="{% url 'home:home' %}"
+                class="nav-link"
+                role="menuitem"
+                {%
+                if
+                request.resolver_match.url_name=""
+                ="home"
+                %}
+                aria-current="page"
+                {%
+                endif%}
+              >
+                Ana Səhifə
+              </a>
+            </li>
+            <li class="nav-item" role="none">
+              <a
+                href="{% url 'services:services' %}"
+                class="nav-link"
+                role="menuitem"
+                {%
+                if
+                request.resolver_match.url_name=""
+                ="services"
+                %}aria-current="page"
+                {%
+                endif
+                %}
+              >
+                Xidmətlər
+              </a>
+            </li>
+            <li class="nav-item" role="none">
+              <a
+                href="{% url 'about:about' %}"
+                class="nav-link"
+                role="menuitem"
+                {%
+                if
+                request.resolver_match.url_name=""
+                ="about"
+                %}aria-current="page"
+                {%
+                endif
+                %}
+              >
+                Haqqında
+              </a>
+            </li>
+          </ul>
+          <button
+            class="nav-toggle"
+            id="mobile-menu"
+            aria-label="Mobil menyunu aç/bağla"
+            aria-expanded="false"
+          >
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content" role="main">
+      {% block content %} {% endblock %}
+    </main>
+
+    <footer role="contentinfo">
+      <div class="footer-container">
+        <p>&copy; 2026 Ceyhan Nur. Bütün hüquqlar qorunur.</p>
+        <nav class="footer-nav" aria-label="Footer naviqasiyası">
+          <ul>
+            <li><a href="{% url 'home:home' %}">Ana Səhifə</a></li>
+            <li><a href="{% url 'services:services' %}">Xidmətlər</a></li>
+            <li><a href="{% url 'about:about' %}">Haqqında</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <script src="{% static 'js/contact.js' %}" defer></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

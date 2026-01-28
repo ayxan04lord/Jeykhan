@@ -1,0 +1,13 @@
+{% load static %}
+<div class="experience-item">
+  <h3>{{ experience.title }}</h3>
+  <div class="experience-meta">
+    <span class="experience-years"
+      >{{ experience.years_experience }} il təcrübə</span
+    >
+    <span class="experience-category"
+      >{{ experience.get_category_display }}</span
+    >
+  </div>
+  <p>{{ experience.description }}</p>
+</div>

@@ -1,0 +1,218 @@
+/* Əsas stillər */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Accessibility - Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+  z-index: 9999;
+  font-weight: bold;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Tipoqrafiya */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #34495e;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #34495e;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+/* Naviqasiya */
+.navbar {
+  background-color: #2c3e50;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-logo a:hover,
+.nav-logo a:focus {
+  color: #3498db;
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #3498db;
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+.nav-link[aria-current="page"] {
+  color: #3498db;
+  font-weight: 600;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus {
+  background-color: rgba(52, 152, 219, 0.2);
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #ecf0f1;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Footer */
+footer {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 4rem;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-nav {
+  margin-top: 1rem;
+}
+
+.footer-nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: #bdc3c7;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 0.25rem;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus {
+  color: #3498db;
+  outline: 1px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* Ümumi bölmələr */
+section {
+  padding: 4rem 0;
+}
+
+.page-header {
+  background-color: #34495e;
+  color: #ecf0f1;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.page-header h1 {
+  color: #ecf0f1;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  color: #bdc3c7;
+  font-size: 1.1rem;
+}

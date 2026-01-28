@@ -1,0 +1,236 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block title %}Ana Səhifə - Ceyhan Nur{% endblock %} {% block description %}Peşəkar chef və restoran idarəçiliyi mütəxəssisi Ceyhan Nur. Kulinariya məsləhətçiliği, menyu inkişafı və restoran əməliyyatları sahələrində təcrübəli ekspert.{% endblock %} {% block content %}
+<!-- Hero Section with Prominent Contact Button -->
+<section class="hero" role="banner">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">Ceyhan Nur</h1>
+      <p class="hero-subtitle">
+        Peşəkar Chef və Restoran İdarəçiliği Mütəxəssisi
+      </p>
+      <p class="hero-description">
+        Kulinariya sahəsində təcrübəli ekspert və restoran idarəçiliyi
+        mütəxəssisi. Masallı Süfrəsi restoranının baş chef-i kimi keyfiyyətli
+        xidmət təqdim edirəm.
+      </p>
+
+      <!-- Prominent Contact Button -->
+      <div class="hero-contact">
+        {% include 'includes/contact_button.html' %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Services Section -->
+<section
+  class="featured-services"
+  role="region"
+  aria-labelledby="services-heading"
+>
+  <div class="container">
+    <h2 id="services-heading" class="section-title">
+      Peşəkar Kulinariya Xidmətləri
+    </h2>
+    <p class="section-subtitle">
+      Restoran idarəçiliği və kulinariya sahəsində ekspert xidmətlər
+    </p>
+
+    {% if featured_services %}
+    <div class="services-grid">
+      {% for service in featured_services %} {% include 'includes/service_card.html' %} {% endfor %}
+    </div>
+    {% else %}
+    <!-- Fallback content when no services are available -->
+    <div class="services-grid">
+      <div class="service-card featured">
+        <div class="service-icon">
+          <i class="fas fa-utensils" aria-hidden="true"></i>
+        </div>
+        <h3>Kulinariya Məsləhətçiliği</h3>
+        <p>
+          Peşəkar menyu planlaşdırması, resept inkişafı və kulinariya
+          standartlarının təyin edilməsi
+        </p>
+        <ul class="service-features">
+          <li>Menyu dizaynı və inkişafı</li>
+          <li>Resept standartlaşdırması</li>
+          <li>Keyfiyyət nəzarəti</li>
+        </ul>
+      </div>
+
+      <div class="service-card featured">
+        <div class="service-icon">
+          <i class="fas fa-chart-line" aria-hidden="true"></i>
+        </div>
+        <h3>Restoran İdarəçiliyi</h3>
+        <p>
+          Restoran əməliyyatlarının optimallaşdırılması və biznes proseslərinin
+          səmərəli idarə edilməsi
+        </p>
+        <ul class="service-features">
+          <li>Əməliyyat idarəetməsi</li>
+          <li>Heyət təlimi</li>
+          <li>Xərc optimallaşdırması</li>
+        </ul>
+      </div>
+
+      <div class="service-card featured">
+        <div class="service-icon">
+          <i class="fas fa-store" aria-hidden="true"></i>
+        </div>
+        <h3>Masallı Süfrəsi</h3>
+        <p>
+          Hal-hazırda baş chef kimi fəaliyyət göstərdiyim restoran. Ənənəvi və
+          müasir kulinariya texnikalarının sintezi
+        </p>
+        <ul class="service-features">
+          <li>Ənənəvi mətbəx</li>
+          <li>Müasir texnikalar</li>
+          <li>Keyfiyyətli xidmət</li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="services-cta">
+      <a href="{% url 'services:services' %}" class="btn btn-primary">
+        Bütün Xidmətləri Gör
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Experience Highlights -->
+{% if featured_experiences %}
+<section
+  class="featured-experience"
+  role="region"
+  aria-labelledby="experience-heading"
+>
+  <div class="container">
+    <h2 id="experience-heading" class="section-title">Təcrübə Vurğuları</h2>
+    <p class="section-subtitle">İllər boyu qazanılmış təcrübə və ekspertlik</p>
+
+    <div class="experience-grid">
+      {% for experience in featured_experiences %} {% include 'includes/experience_item.html' %} {% endfor %}
+    </div>
+
+    <div class="experience-cta">
+      <a href="{% url 'about:about' %}" class="btn btn-secondary">
+        Daha Ətraflı Məlumat
+      </a>
+    </div>
+  </div>
+</section>
+{% else %}
+<!-- Fallback experience highlights when no featured experiences -->
+<section
+  class="featured-experience"
+  role="region"
+  aria-labelledby="experience-heading"
+>
+  <div class="container">
+    <h2 id="experience-heading" class="section-title">Peşəkar Təcrübə</h2>
+    <p class="section-subtitle">Kulinariya sahəsində uzun illər təcrübəsi</p>
+
+    <div class="experience-grid">
+      <div class="experience-item highlight">
+        <h3>Baş Chef - Masallı Süfrəsi</h3>
+        <div class="experience-meta">
+          <span class="experience-years">Hal-hazırda</span>
+          <span class="experience-category">Restaurant Management</span>
+        </div>
+        <p>
+          Masallı Süfrəsi restoranında baş chef kimi fəaliyyət göstərirəm. Menyu
+          inkişafı, keyfiyyət nəzarəti və mətbəx əməliyyatlarının idarə
+          edilməsi.
+        </p>
+      </div>
+
+      <div class="experience-item highlight">
+        <h3>Kulinariya Eksperti</h3>
+        <div class="experience-meta">
+          <span class="experience-years">10+ il təcrübə</span>
+          <span class="experience-category">Culinary Arts</span>
+        </div>
+        <p>
+          Kulinariya sahəsində geniş təcrübə və müxtəlif mətbəx texnikalarında
+          ekspertlik. Ənənəvi və müasir kulinariya üslublarının birləşdirilməsi.
+        </p>
+      </div>
+    </div>
+
+    <div class="experience-cta">
+      <a href="{% url 'about:about' %}" class="btn btn-secondary">
+        Daha Ətraflı Məlumat
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Masallı Süfrəsi Showcase -->
+<section
+  class="restaurant-showcase"
+  role="region"
+  aria-labelledby="restaurant-heading"
+>
+  <div class="container">
+    <div class="showcase-content">
+      <h2 id="restaurant-heading" class="section-title">Masallı Süfrəsi</h2>
+      <p class="section-subtitle">
+        Hal-hazırda baş chef kimi fəaliyyət göstərdiyim restoran
+      </p>
+
+      <div class="restaurant-info">
+        <div class="restaurant-description">
+          <p>
+            Masallı Süfrəsi restoranında baş chef kimi Azərbaycan mətbəxinin
+            ənənəvi dadlarını müasir kulinariya texnikaları ilə birləşdirərək
+            qonaqlarımıza unudulmaz təcrübə yaşadırıq.
+          </p>
+
+          <div class="restaurant-features">
+            <div class="feature-item">
+              <i class="fas fa-award" aria-hidden="true"></i>
+              <span>Ənənəvi Reseptlər</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-leaf" aria-hidden="true"></i>
+              <span>Təzə Məhsullar</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              <span>Sevgi ilə Hazırlanır</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="restaurant-image">
+          <div class="image-placeholder">
+            <i class="fas fa-utensils" aria-hidden="true"></i>
+            <p>Masallı Süfrəsi</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section" role="region" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="cta-content">
+      <h2 id="cta-heading">Bizimlə Əlaqə Saxlayın</h2>
+      <p>
+        Kulinariya məsləhətçiliği, restoran idarəçiliği və ya Masallı Süfrəsi
+        haqqında daha ətraflı məlumat almaq üçün mənimlə əlaqə saxlayın.
+      </p>
+
+      <div class="cta-contact">
+        {% include 'includes/contact_button.html' %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

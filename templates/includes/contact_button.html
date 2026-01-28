@@ -1,0 +1,41 @@
+{% load static %} {% if contact_info %}
+<div class="contact-wrapper">
+  <a
+    href="tel:{{ contact_info.phone_number }}"
+    class="contact-button"
+    aria-label="Telefon zəngi et: {{ contact_info.phone_number }}"
+    title="Telefon zəngi et"
+  >
+    <span class="contact-icon" aria-hidden="true">📞</span>
+    <span class="contact-text">
+      <span class="contact-label">Əlaqə:</span>
+      <span class="contact-number">{{ contact_info.phone_number }}</span>
+    </span>
+  </a>
+
+  <!-- Desktop fallback - show number for manual dialing -->
+  <div class="contact-fallback" aria-hidden="true">
+    <small>Masaüstü istifadəçiləri üçün: {{ contact_info.phone_number }}</small>
+  </div>
+</div>
+{% else %}
+<!-- Fallback contact button when no contact info is available -->
+<div class="contact-wrapper">
+  <a
+    href="tel:+994501234567"
+    class="contact-button"
+    aria-label="Telefon zəngi et: +994 50 123 45 67"
+    title="Telefon zəngi et"
+  >
+    <span class="contact-icon" aria-hidden="true">📞</span>
+    <span class="contact-text">
+      <span class="contact-label">Əlaqə:</span>
+      <span class="contact-number">+994 50 123 45 67</span>
+    </span>
+  </a>
+
+  <div class="contact-fallback" aria-hidden="true">
+    <small>Masaüstü istifadəçiləri üçün: +994 50 123 45 67</small>
+  </div>
+</div>
+{% endif %}
