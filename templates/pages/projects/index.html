@@ -1,0 +1,680 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Layihələr - Ceyhan Nur{% endblock %}
+{% block description %}Ceyhan Nurun iştirak etdiyi TV verilişləri: Sehirli Aşpaz, Dadlı Dünya, Ustad, Aclıq Oyunları, Rusiyada Qurme. Həmçinin mestixumarcay brendinin yaradıcısı.{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* ── Hero ── */
+  .projects-hero {
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 60%, #16213e 100%);
+    color: white;
+    text-align: center;
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .projects-hero::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #f8f9fa;
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .projects-hero .container { position: relative; z-index: 2; }
+
+  .projects-hero h1 {
+    font-size: 3.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .projects-hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .hero-icon-large {
+    font-size: 4.5rem;
+    display: block;
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* ── Section Headings ── */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    color: #1a1a2e;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    color: #888;
+    font-size: 1rem;
+    max-width: 540px;
+  }
+
+  /* ── TV Shows Section ── */
+  .shows-section {
+    padding: 90px 0 60px;
+    background: #f8f9fa;
+  }
+
+  .shows-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .show-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .show-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+  }
+
+  .show-poster {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .show-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .show-poster-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.95);
+  }
+
+  .show-poster-placeholder .show-emoji { font-size: 3.5rem; }
+  .show-poster-placeholder .show-channel {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  .show-type-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(0,0,0,0.65);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    backdrop-filter: blur(4px);
+  }
+
+  .show-country-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255,255,255,0.9);
+    color: #333;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .show-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .show-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.4rem;
+  }
+
+  .show-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .show-year {
+    font-size: 0.82rem;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .show-result {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: #fff8e1;
+    color: #f59f00;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .show-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.2rem;
+  }
+
+  .btn-youtube {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #FF0000;
+    color: white;
+    padding: 9px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+  }
+
+  .btn-youtube:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+    color: white;
+  }
+
+  /* Show gradient presets */
+  .show-grad-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+  .show-grad-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .show-grad-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+  .show-grad-4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+  .show-grad-5 { background: linear-gradient(135deg, #fa709a, #fee140); }
+
+  /* ── Products Section ── */
+  .products-section {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 2px solid #f0f0f0;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card:hover {
+    border-color: #ee5a24;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(238,90,36,0.15);
+  }
+
+  .product-image-wrap {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  }
+
+  .product-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: #999;
+  }
+
+  .product-placeholder span:first-child { font-size: 4rem; }
+  .product-placeholder .prod-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #bbb;
+  }
+
+  .product-new-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    animation: badge-pulse 2s infinite;
+  }
+
+  @keyframes badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(238,90,36,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(238,90,36,0); }
+  }
+
+  .product-body {
+    padding: 1.8rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-name {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 0.3rem;
+  }
+
+  .product-tagline {
+    font-size: 0.95rem;
+    color: #ee5a24;
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .product-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    min-height: 44px;
+  }
+
+  .btn-product-primary {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    box-shadow: 0 4px 15px rgba(238,90,36,0.3);
+  }
+
+  .btn-product-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(238,90,36,0.45);
+    color: white;
+  }
+
+  .btn-product-ig {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    color: white;
+  }
+
+  .btn-product-ig:hover {
+    transform: translateY(-2px);
+    color: white;
+    opacity: 0.9;
+  }
+
+  /* Fallback mestixumarcay card */
+  .mestixumarcay-teaser {
+    background: linear-gradient(135deg, #2d1b69, #11998e);
+    color: white;
+    border-radius: 24px;
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mestixumarcay-teaser::before {
+    content: "🍵";
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.08;
+    top: -1rem;
+    right: -1rem;
+  }
+
+  .mestixumarcay-teaser h3 {
+    font-size: 1.8rem;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .mestixumarcay-teaser .tagline {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .mestixumarcay-teaser p {
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .coming-soon-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    backdrop-filter: blur(4px);
+  }
+
+  @media (max-width: 768px) {
+    .projects-hero h1 { font-size: 2.2rem; }
+    .shows-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="projects-hero" role="banner">
+  <div class="container">
+    <span class="hero-icon-large">🎬</span>
+    <h1>Layihələr</h1>
+    <p>Televiziya verilişlərindəki uğurlar, yaradılan məhsullar və Ceyhan Nurun imzasını daşıyan hər bir layihə</p>
+  </div>
+</section>
+
+<!-- TV Shows -->
+<section class="shows-section" role="region" aria-labelledby="shows-heading">
+  <div class="container">
+    <div>
+      <span class="section-label"><i class="fas fa-tv" aria-hidden="true"></i> TV Verilişləri</span>
+      <h2 class="section-title" id="shows-heading">Efirə Çıxdığım Verilişlər</h2>
+      <p class="section-subtitle">Azərbaycan və Rusiya televiziyalarında iştirak etdiyim kulinariya verilişləri</p>
+    </div>
+
+    {% if tv_shows %}
+    <div class="shows-grid">
+      {% for show in tv_shows %}
+      {% with grad_classes="show-grad-1 show-grad-2 show-grad-3 show-grad-4 show-grad-5" %}
+      <article class="show-card">
+        <div class="show-poster {% cycle 'show-grad-1' 'show-grad-2' 'show-grad-3' 'show-grad-4' 'show-grad-5' %}">
+          {% if show.poster %}
+            <img src="{{ show.poster.url }}" alt="{{ show.title }}" loading="lazy">
+          {% else %}
+            <div class="show-poster-placeholder">
+              <span class="show-emoji">📺</span>
+              {% if show.channel %}<span class="show-channel">{{ show.channel }}</span>{% endif %}
+            </div>
+          {% endif %}
+          <span class="show-type-badge">{{ show.get_show_type_display }}</span>
+          {% if show.country %}<span class="show-country-badge">🌍 {{ show.country }}</span>{% endif %}
+        </div>
+        <div class="show-body">
+          <h3 class="show-title">{{ show.title }}</h3>
+          <div class="show-meta">
+            {% if show.year %}<span class="show-year"><i class="fas fa-calendar-alt"></i>{{ show.year }}</span>{% endif %}
+            {% if show.result %}<span class="show-result">🏆 {{ show.result }}</span>{% endif %}
+          </div>
+          <p class="show-description">{{ show.description }}</p>
+          {% if show.youtube_url %}
+          <a href="{{ show.youtube_url }}" class="btn-youtube" target="_blank" rel="noopener noreferrer" aria-label="{{ show.title }} videosuna bax">
+            <i class="fab fa-youtube"></i> İzlə
+          </a>
+          {% endif %}
+        </div>
+      </article>
+      {% endwith %}
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <!-- Hardcoded fallback -->
+    <div class="shows-grid">
+
+      <article class="show-card">
+        <div class="show-poster show-grad-1">
+          <div class="show-poster-placeholder">
+            <span class="show-emoji">✨</span>
+            <span class="show-channel">İctimai TV</span>
+          </div>
+          <span class="show-type-badge">Müsabiqə</span>
+          <span class="show-country-badge">🇦🇿 Azərbaycan</span>
+        </div>
+        <div class="show-body">
+          <h3 class="show-title">Sehirli Aşpaz</h3>
+          <div class="show-meta">
+            <span class="show-result">🏆 İştirakçı</span>
+          </div>
+          <p class="show-description">Azərbaycan televiziyasının populyar kulinariya müsabiqəsi. Ölkənin ən yaxşı aşpazlarının bir araya gəldiyi, bacarıq və yaradıcılığın sınandığı bu verilişdə Ceyhan Nur öz kulinariya ustadlığını nümayiş etdirdi.</p>
+        </div>
+      </article>
+
+      <article class="show-card">
+        <div class="show-poster show-grad-2">
+          <div class="show-poster-placeholder">
+            <span class="show-emoji">🍽️</span>
+            <span class="show-channel">AzTV</span>
+          </div>
+          <span class="show-type-badge">Tədris</span>
+          <span class="show-country-badge">🇦🇿 Azərbaycan</span>
+        </div>
+        <div class="show-body">
+          <h3 class="show-title">Dadlı Dünya</h3>
+          <div class="show-meta">
+            <span class="show-result">⭐ İştirakçı</span>
+          </div>
+          <p class="show-description">Azərbaycan mütbəxinin sirlərini, milli yeməklərimizin tarixini və hazırlanma texnikalarını izləyicilərə çatdıran kulinariya verilişi. Dadlı Dünyada Azərbaycanın zəngin kulinariya irsini canlandırdı.</p>
+        </div>
+      </article>
+
+      <article class="show-card">
+        <div class="show-poster show-grad-3">
+          <div class="show-poster-placeholder">
+            <span class="show-emoji">👨‍🍳</span>
+            <span class="show-channel">Space TV</span>
+          </div>
+          <span class="show-type-badge">Müsabiqə</span>
+          <span class="show-country-badge">🇦🇿 Azərbaycan</span>
+        </div>
+        <div class="show-body">
+          <h3 class="show-title">Ustad</h3>
+          <div class="show-meta">
+            <span class="show-result">🥇 Finalist</span>
+          </div>
+          <p class="show-description">Aşpazlıq sənətinin ustalarını bir araya gətirən prestijli müsabiqə. Verilişdə yüksək çətinlik dərəcəli kulinariya tapşırıqları icra edən Ceyhan Nur finala yüksələrək ustalığını sübut etdi.</p>
+        </div>
+      </article>
+
+      <article class="show-card">
+        <div class="show-poster show-grad-4">
+          <div class="show-poster-placeholder">
+            <span class="show-emoji">⚔️</span>
+            <span class="show-channel">Xəzər TV</span>
+          </div>
+          <span class="show-type-badge">Müsabiqə</span>
+          <span class="show-country-badge">🇦🇿 Azərbaycan</span>
+        </div>
+        <div class="show-body">
+          <h3 class="show-title">Aclıq Oyunları</h3>
+          <div class="show-meta">
+            <span class="show-result">🏅 İştirakçı</span>
+          </div>
+          <p class="show-description">Strategiya, sürət və kulinariya bacarığını birləşdirən intensiv yarışma formatı. Ən gözlənilməz ingredientlərlə ən qısa müddətdə ən yaxşı yeməyi hazırlama mübarizəsi. Ceyhan Nur bu sınavı böyük uğurla keçdi.</p>
+        </div>
+      </article>
+
+      <article class="show-card">
+        <div class="show-poster show-grad-5">
+          <div class="show-poster-placeholder">
+            <span class="show-emoji">🇷🇺</span>
+            <span class="show-channel">Rusiya TV</span>
+          </div>
+          <span class="show-type-badge">Qurme</span>
+          <span class="show-country-badge">🇷🇺 Rusiya</span>
+        </div>
+        <div class="show-body">
+          <h3 class="show-title">Rusiyada Qurme</h3>
+          <div class="show-meta">
+            <span class="show-result">🌟 Beynəlxalq</span>
+          </div>
+          <p class="show-description">Azərbaycan mətbəxini beynəlxalq arenada təmsil edən gourmet verilişi. Rusiya televiziyasında yayımlanan bu layihədə Ceyhan Nur Azərbaycan kulinariyasının dünyaya açılan pəncərəsi oldu.</p>
+        </div>
+      </article>
+
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Products -->
+<section class="products-section" role="region" aria-labelledby="products-heading">
+  <div class="container">
+    <div>
+      <span class="section-label"><i class="fas fa-box" aria-hidden="true"></i> Məhsul &amp; Brend</span>
+      <h2 class="section-title" id="products-heading">Yaratdığım Məhsullar</h2>
+      <p class="section-subtitle">Kulinariya təcrübəsini məhsula çevirərək yaranan brendlər</p>
+    </div>
+
+    {% if products %}
+    <div class="products-grid">
+      {% for product in products %}
+      <article class="product-card">
+        <div class="product-image-wrap">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+          {% else %}
+            <div class="product-placeholder">
+              <span>🍵</span>
+              <span class="prod-label">Brend</span>
+            </div>
+          {% endif %}
+          {% if product.is_featured %}<span class="product-new-badge">🔥 Yeni</span>{% endif %}
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">{{ product.name }}</h3>
+          {% if product.tagline %}<p class="product-tagline">"{{ product.tagline }}"</p>{% endif %}
+          <p class="product-description">{{ product.description }}</p>
+          <div class="product-actions">
+            {% if product.website_url %}
+            <a href="{{ product.website_url }}" class="btn-product btn-product-primary" target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-globe"></i> Veb Sayt
+            </a>
+            {% endif %}
+            {% if product.instagram_url %}
+            <a href="{{ product.instagram_url }}" class="btn-product btn-product-ig" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <!-- Fallback mestixumarcay placeholder -->
+    <div class="products-grid" style="max-width:500px; margin: 2.5rem auto 0;">
+      <div class="mestixumarcay-teaser">
+        <h3>mestixumarcay</h3>
+        <p class="tagline">"Hər qurtumda bir hekayə"</p>
+        <p>Ceyhan Nurun öz imzasını daşıyan eksklüziv çay brendinin tezliklə rəsmi səhifəsi açılacaq. Azərbaycanın ən yaxşı çay ənənələrindən ilham alan bu brend, keyfiyyət və zövqü birləşdirir.</p>
+        <span class="coming-soon-badge"><i class="fas fa-clock"></i> Tezliklə</span>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

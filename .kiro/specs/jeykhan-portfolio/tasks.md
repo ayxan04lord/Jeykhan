@@ -70,26 +70,26 @@ Bu icra planı restoran idarəçiliyi və musiqi təlimi sahələrində təcrüb
     - Hər iki sahədə ekspertliyi vurğula
     - _Tələblər: 3.1, 3.2, 3.4_
 
-- [ ] 7. CSS stilləşdirməsi və responsiv dizaynı tətbiq et
-  - [ ] 7.1 Əsas stillər ilə main.css yarat
+- [x] 7. CSS stilləşdirməsi və responsiv dizaynı tətbiq et
+  - [x] 7.1 Əsas stillər ilə main.css yarat
     - Tipoqrafiya, rənglər və tərtibat stillərini təyin et
     - Peşəkar dizayn sistemini tətbiq et
     - _Tələblər: 4.5_
-  - [ ] 7.2 Media sorğuları ilə responsive.css yarat
+  - [x] 7.2 Media sorğuları ilə responsive.css yarat
     - Mobil-ilk responsiv kəsim nöqtələrini əlavə et
     - Bütün cihazlarda əlaqə düyməsinin görünməsini təmin et
     - _Tələblər: 4.1, 4.2, 1.3_
-  - [ ] 7.3 Təkrar istifadə edilə bilən elementlər üçün components.css yarat
+  - [x] 7.3 Təkrar istifadə edilə bilən elementlər üçün components.css yarat
     - Xidmət kartları və təcrübə bölmələrini stilləşdir
     - Əlaqə düyməsi və naviqasiya elementlərini dizayn et
     - _Tələblər: 2.5_
 
-- [ ] 8. JavaScript funksionallığı və təkmilləşdirmələr əlavə et
-  - [ ] 8.1 Əsas qarşılıqlı əlaqələr üçün main.js yarat
+- [x] 8. JavaScript funksionallığı və təkmilləşdirmələr əlavə et
+  - [x] 8.1 Əsas qarşılıqlı əlaqələr üçün main.js yarat
     - Hamar sürüşmə və naviqasiya təkmilləşdirmələri əlavə et
     - Mobil menyu funksionallığını tətbiq et
     - _Tələblər: 4.4_
-  - [ ] 8.2 Əlaqə düyməsi davranışı üçün contact.js yarat
+  - [x] 8.2 Əlaqə düyməsi davranışı üçün contact.js yarat
     - Klik izləmə və istifadəçi rəyini əlavə et
     - Tel: linklər üçün zərif deqradasiya tətbiq et
     - _Tələblər: 1.2_

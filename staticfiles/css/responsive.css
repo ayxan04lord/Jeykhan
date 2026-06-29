@@ -1,18 +1,196 @@
-/* Responsiv dizayn */
+/* Responsiv dizayn - Mobile First Approach */
 
-/* Tablet və kiçik masaüstü */
+/* Base styles are mobile-first (320px+) */
+
+/* Small mobile devices (up to 480px) */
+@media screen and (max-width: 480px) {
+  :root {
+    --font-xs: 0.7rem;
+    --font-sm: 0.8rem;
+    --font-base: 0.9rem;
+    --font-lg: 1rem;
+    --font-xl: 1.1rem;
+    --font-2xl: 1.3rem;
+    --font-3xl: 1.6rem;
+    --font-4xl: 2rem;
+    --font-5xl: 2.5rem;
+
+    --spacing-xl: 1rem;
+    --spacing-2xl: 1.5rem;
+    --spacing-3xl: 2rem;
+  }
+
+  .container,
+  .container-sm,
+  .container-lg {
+    padding: 0 var(--spacing-md);
+  }
+
+  .nav-container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .nav-logo a {
+    font-size: var(--font-2xl);
+  }
+
+  .hero {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .hero h1 {
+    font-size: var(--font-4xl);
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-base);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  section {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .page-header {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .page-header h1 {
+    font-size: var(--font-3xl);
+  }
+
+  .page-header p {
+    font-size: var(--font-base);
+  }
+
+  .service-card,
+  .experience-item {
+    padding: var(--spacing-lg);
+  }
+
+  .service-item {
+    padding: var(--spacing-md);
+  }
+
+  /* Contact button - mobile optimized */
+  .contact-button {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-sm);
+    width: 100%;
+    justify-content: center;
+    min-height: 48px; /* Touch target size */
+  }
+
+  .contact-text {
+    align-items: center;
+  }
+
+  .contact-number {
+    font-size: var(--font-base);
+  }
+
+  .contact-label {
+    font-size: var(--font-xs);
+  }
+
+  .footer-nav ul {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  /* Grid adjustments */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  /* Typography adjustments */
+  h1 {
+    font-size: var(--font-4xl);
+  }
+
+  h2 {
+    font-size: var(--font-3xl);
+  }
+
+  h3 {
+    font-size: var(--font-xl);
+  }
+}
+
+/* Large mobile devices (481px to 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .hero h1 {
+    font-size: var(--font-5xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-lg);
+  }
+
+  .contact-button {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    font-size: var(--font-base);
+    width: auto;
+    min-width: 200px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+}
+
+/* Tablet devices (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  .contact-button {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    font-size: var(--font-lg);
+  }
+
+  /* Show contact fallback on larger screens */
+  .contact-fallback {
+    display: block;
+    margin-top: var(--spacing-sm);
+  }
+}
+
+/* Mobile navigation - applies to all devices below 769px */
 @media screen and (max-width: 768px) {
   .nav-menu {
     position: fixed;
     left: -100%;
     top: 70px;
     flex-direction: column;
-    background-color: #2c3e50;
+    background-color: var(--bg-dark);
     width: 100%;
     text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-    padding: 2rem 0;
+    transition: left var(--transition-normal);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-2xl) 0;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav-menu.active {
@@ -20,7 +198,13 @@
   }
 
   .nav-menu li {
-    margin: 1rem 0;
+    margin: var(--spacing-md) 0;
+  }
+
+  .nav-link {
+    padding: var(--spacing-md) var(--spacing-xl);
+    display: block;
+    font-size: var(--font-lg);
   }
 
   .nav-toggle {
@@ -39,132 +223,152 @@
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.1rem;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .experience-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .contact-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+  /* Hide contact fallback on mobile */
+  .contact-fallback {
+    display: none;
   }
 }
 
-/* Mobil cihazlar */
-@media screen and (max-width: 480px) {
-  .container {
-    padding: 0 15px;
+/* Desktop devices (1025px to 1440px) */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-2xl);
   }
 
-  .hero {
-    padding: 4rem 0;
+  .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-2xl);
   }
 
+  .contact-button {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    font-size: var(--font-lg);
+  }
+
+  .contact-fallback {
+    display: block;
+    margin-top: var(--spacing-sm);
+  }
+}
+
+/* Large desktop devices (1441px+) */
+@media screen and (min-width: 1441px) {
   .hero h1 {
-    font-size: 2rem;
+    font-size: calc(var(--font-5xl) * 1.2);
   }
 
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: var(--font-xl);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-3xl);
+  }
+
+  .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-3xl);
+  }
+
+  .contact-button {
+    padding: var(--spacing-xl) var(--spacing-3xl);
+    font-size: var(--font-xl);
+  }
+}
+
+/* High DPI displays */
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+  screen and (min-resolution: 192dpi) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .hero h1 {
+    font-size: var(--font-3xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-base);
+    margin-bottom: var(--spacing-md);
   }
 
   section {
-    padding: 2rem 0;
+    padding: var(--spacing-xl) 0;
   }
 
   .page-header {
-    padding: 2rem 0;
+    padding: var(--spacing-xl) 0;
+  }
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  .nav-toggle,
+  .contact-button,
+  footer {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .page-header {
+    background: none;
+    color: black;
+    padding: 1rem 0;
   }
 
   .service-card,
   .experience-item {
-    padding: 1.5rem;
-  }
-
-  .service-item {
-    padding: 1rem;
-  }
-
-  .contact-button {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.9rem;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .nav-container {
-    padding: 0 15px;
-  }
-
-  .nav-logo a {
-    font-size: 1.5rem;
-  }
-
-  .footer-nav ul {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
   }
 }
 
-/* Çox kiçik ekranlar */
-@media screen and (max-width: 320px) {
-  .hero h1 {
-    font-size: 1.8rem;
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.4);
   }
 
-  .contact-button {
-    font-size: 0.8rem;
-    padding: 0.6rem 1rem;
-  }
-
+  .nav-link,
+  .contact-button,
   .service-card,
   .experience-item {
-    padding: 1rem;
-  }
-}
-
-/* Böyük ekranlar */
-@media screen and (min-width: 1200px) {
-  .hero h1 {
-    font-size: 4rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.4rem;
-  }
-
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
-  }
-
-  .experience-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
+    border: 2px solid currentColor;
   }
 }

@@ -1,0 +1,119 @@
+[
+  {
+    "model": "core.contactinfo",
+    "pk": 1,
+    "fields": {
+      "phone_number": "+994501234567",
+      "email": "info@jeykhan.az",
+      "address": "Masallı, Azərbaycan",
+      "is_active": true,
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.restaurant",
+    "pk": 1,
+    "fields": {
+      "name": "Masallı Hotel Restoran",
+      "slug": "masalli-hotel-restoran",
+      "description": "Masallı şəhərinin mərkəzində yerləşən mehmanxana restoranı. Ənənəvi Azərbaycan mətbəxinin ən yaxşı nümunələrini müasir servis ilə birləşdirən bu restoran yerli və xarici qonaqlar üçün əsl kulinariya zövqü yaradır. Geniş menyu, keyfiyyətli xidmət və rahat atmosfer.",
+      "short_description": "Masallının ən prestijli otel restoranı — ənənəvi Azərbaycan mətbəxi.",
+      "cuisine_type": "Azərbaycan mətbəxi",
+      "location": "Masallı şəhəri",
+      "phone_number": "",
+      "website_url": "",
+      "instagram_url": "",
+      "logo": "",
+      "cover_image": "",
+      "is_active": true,
+      "order": 1,
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.restaurant",
+    "pk": 2,
+    "fields": {
+      "name": "Masallı Hotel İsti Su",
+      "slug": "masalli-hotel-isti-su",
+      "description": "İsti su mənbəyi yanında yerləşən unikal restoran. Sağlamlıq turizmi ilə keyfiyyətli qidalanmanı birləşdirən bu məkan, isti su kənarında unudulmaz yemək təcrübəsi yaşadır. Təbii mühit və ləzzətli mətbəxin vəhdəti qonaqları hər zaman bu məkana geri qaytarır.",
+      "short_description": "İsti su mənbəyi kənarında unikal yemək təcrübəsi.",
+      "cuisine_type": "Azərbaycan & Avropa",
+      "location": "Masallı, İsti Su",
+      "phone_number": "",
+      "website_url": "",
+      "instagram_url": "",
+      "logo": "",
+      "cover_image": "",
+      "is_active": true,
+      "order": 2,
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.restaurant",
+    "pk": 3,
+    "fields": {
+      "name": "Kəndli Organic Fastfood",
+      "slug": "kendli-organic-fastfood",
+      "description": "Sürətli xidmət anlayışını tamamilə təbii və organik məhsullarla birləşdirən innovativ konsepsiya. Kənd həyatının saf məhsulları əsasında hazırlanan fast food menüsü — heç bir süni qatqı, yalnız təbiilik. Sağlam, sürətli və həmişə ləzzətli.",
+      "short_description": "Organik və təbii məhsullarla hazırlanan sağlam fast food.",
+      "cuisine_type": "Organic Fast Food",
+      "location": "Masallı",
+      "phone_number": "",
+      "website_url": "",
+      "instagram_url": "",
+      "logo": "",
+      "cover_image": "",
+      "is_active": true,
+      "order": 3,
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.restaurant",
+    "pk": 4,
+    "fields": {
+      "name": "Kafe O",
+      "slug": "kafe-o",
+      "description": "Müasir dizayn anlayışı ilə yaradılmış şəhər kafesi. Keyfiyyətli içkilər, əl istehsalı tortlar və yüngül yemək menyusu ilə şəhərin ən məşhur istirahət nöqtəsinə çevrilmişdir. Hər detal düşünülmüş, hər kupası öz hekayəsini anladır.",
+      "short_description": "Müasir atmosfer, keyfiyyətli içki və əl istehsalı tortlar.",
+      "cuisine_type": "Kafe & Qəhvə",
+      "location": "Masallı",
+      "phone_number": "",
+      "website_url": "",
+      "instagram_url": "",
+      "logo": "",
+      "cover_image": "",
+      "is_active": true,
+      "order": 4,
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "core.restaurant",
+    "pk": 5,
+    "fields": {
+      "name": "Terras Masallı Pub Lounge",
+      "slug": "terras-masalli-pub-lounge",
+      "description": "Açıq terras dizaynı ilə fərqlənən pub lounge məkanı. Geniş panoramlı görünüş, canlı musiqi axşamları və seçilmiş içki-yemək menyusu ilə axşam saatlarında Masallının ən canlı sosial məkanına çevrilmişdir. Rahatlamaq, ünsiyyət qurmaq və zövq almaq üçün ideal yer.",
+      "short_description": "Açıq terras, canlı musiqi və geniş panoramlı Masallının pub lounge-u.",
+      "cuisine_type": "Pub & Lounge",
+      "location": "Masallı",
+      "phone_number": "",
+      "website_url": "",
+      "instagram_url": "",
+      "logo": "",
+      "cover_image": "",
+      "is_active": true,
+      "order": 5,
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    }
+  }
+]

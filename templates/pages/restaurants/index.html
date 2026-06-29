@@ -1,0 +1,538 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Restoranlar - Ceyhan Nur{% endblock %}
+{% block description %}Ceyhan Nurun idarə etdiyi restoranlar: Masallı Hotel Restoran, Masallı Hotel İsti Su, Kəndli Organic Fastfood, Kafe O, Terras Masallı Pub Lounge.{% endblock %}
+
+{% block extra_css %}
+<style>
+  .restaurants-hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    text-align: center;
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .restaurants-hero::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(255,107,107,0.08) 0%, transparent 60%);
+    animation: pulse-bg 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse-bg {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .restaurants-hero .container { position: relative; z-index: 2; }
+
+  .restaurants-hero h1 {
+    font-size: 3.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .restaurants-hero p {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.8);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .hero-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  /* Restaurant Cards Grid */
+  .restaurants-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+  }
+
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .restaurant-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.10);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .restaurant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  }
+
+  /* Cover image or gradient header */
+  .restaurant-cover {
+    height: 180px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .restaurant-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .restaurant-cover-placeholder {
+    font-size: 4rem;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .restaurant-cover-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.3));
+  }
+
+  .restaurant-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255,255,255,0.95);
+    color: #ee5a24;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .restaurant-body {
+    padding: 1.8rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .restaurant-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .restaurant-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .restaurant-location {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .restaurant-cuisine {
+    font-size: 0.8rem;
+    background: #fff3f0;
+    color: #ee5a24;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+
+  .restaurant-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Action buttons */
+  .restaurant-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-reserve {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(238,90,36,0.35);
+    min-height: 48px;
+  }
+
+  .btn-reserve:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(238,90,36,0.5);
+    color: white;
+  }
+
+  .btn-visit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: #2c3e50;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+    min-height: 48px;
+    white-space: nowrap;
+  }
+
+  .btn-visit:hover {
+    border-color: #ee5a24;
+    color: #ee5a24;
+    background: #fff3f0;
+  }
+
+  .btn-visit.instagram { color: #E1306C; }
+  .btn-visit.instagram:hover { border-color: #E1306C; background: #fff0f5; color: #E1306C; }
+
+  /* Empty state */
+  .restaurants-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #888;
+  }
+
+  .restaurants-empty i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+    opacity: 0.3;
+  }
+
+  /* Stats bar */
+  .restaurants-stats {
+    background: white;
+    padding: 40px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-item h3 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-item p {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .restaurants-hero h1 { font-size: 2.2rem; }
+    .restaurants-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .restaurant-actions { flex-direction: column; }
+    .btn-reserve { flex: unset; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="restaurants-hero" role="banner">
+  <div class="container">
+    <span class="hero-icon">🍽️</span>
+    <h1>İdarə Etdiyim Restoranlar</h1>
+    <p>Ceyhan Nurun peşəkar idarəçiliyi altında fəaliyyət göstərən restoran və məkanlar</p>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="restaurants-stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>5</h3>
+        <p>Restoran &amp; Məkan</p>
+      </div>
+      <div class="stat-item">
+        <h3>15+</h3>
+        <p>İl Təcrübə</p>
+      </div>
+      <div class="stat-item">
+        <h3>28</h3>
+        <p>Qızıl Medal</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Restaurants Grid -->
+<section class="restaurants-section" role="region" aria-labelledby="restaurants-heading">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 id="restaurants-heading">Restoranlar</h2>
+      <p style="color:#888; font-size:1rem; max-width:550px; margin:0 auto;">
+        Hər məkan öz unikal konsepsiyası, mətbəxi və atmosferi ilə qonaqlarına xüsusi bir təcrübə təqdim edir
+      </p>
+    </div>
+
+    {% if restaurants %}
+    <div class="restaurants-grid">
+      {% for restaurant in restaurants %}
+      <article class="restaurant-card" aria-label="{{ restaurant.name }}">
+
+        <!-- Cover -->
+        <div class="restaurant-cover">
+          {% if restaurant.cover_image %}
+            <img src="{{ restaurant.cover_image.url }}" alt="{{ restaurant.name }}" loading="lazy">
+          {% else %}
+            <span class="restaurant-cover-placeholder" aria-hidden="true">🍽️</span>
+          {% endif %}
+          <div class="restaurant-cover-overlay"></div>
+          {% if restaurant.cuisine_type %}
+          <span class="restaurant-badge">{{ restaurant.cuisine_type }}</span>
+          {% endif %}
+        </div>
+
+        <!-- Body -->
+        <div class="restaurant-body">
+          <h3 class="restaurant-name">{{ restaurant.name }}</h3>
+
+          <div class="restaurant-meta">
+            {% if restaurant.location %}
+            <span class="restaurant-location">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              {{ restaurant.location }}
+            </span>
+            {% endif %}
+          </div>
+
+          <p class="restaurant-description">{{ restaurant.description }}</p>
+
+          <!-- Action Buttons -->
+          <div class="restaurant-actions">
+            <!-- Reservation Button -->
+            {% if restaurant.phone_number %}
+            <a href="tel:{{ restaurant.phone_number }}"
+               class="btn-reserve"
+               aria-label="{{ restaurant.name }} - rezervasiya üçün zəng et">
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              Rezervasiya
+            </a>
+            {% elif contact_info %}
+            <a href="tel:{{ contact_info.phone_number }}"
+               class="btn-reserve"
+               aria-label="{{ restaurant.name }} - rezervasiya üçün zəng et">
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              Rezervasiya
+            </a>
+            {% endif %}
+
+            <!-- Website or Instagram -->
+            {% if restaurant.website_url %}
+            <a href="{{ restaurant.website_url }}"
+               class="btn-visit"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="{{ restaurant.name }} rəsmi saytı">
+              <i class="fas fa-globe" aria-hidden="true"></i>
+              Sayt
+            </a>
+            {% elif restaurant.instagram_url %}
+            <a href="{{ restaurant.instagram_url }}"
+               class="btn-visit instagram"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="{{ restaurant.name }} Instagram səhifəsi">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              Instagram
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <!-- Fallback: hardcoded known restaurants when DB is empty -->
+    <div class="restaurants-grid">
+
+      <article class="restaurant-card">
+        <div class="restaurant-cover" style="background: linear-gradient(135deg, #c0392b, #e74c3c);">
+          <span class="restaurant-cover-placeholder" aria-hidden="true">🏨</span>
+          <div class="restaurant-cover-overlay"></div>
+          <span class="restaurant-badge">Azərbaycan</span>
+        </div>
+        <div class="restaurant-body">
+          <h3 class="restaurant-name">Masallı Hotel Restoran</h3>
+          <div class="restaurant-meta">
+            <span class="restaurant-location"><i class="fas fa-map-marker-alt"></i> Masallı</span>
+          </div>
+          <p class="restaurant-description">Masallı şəhərinin mərkəzində yerləşən mehmanxana restoranı. Ənənəvi Azərbaycan mətbəxinin ən yaxşı nümunələrini müasir servis ilə birləşdirən bu restoran yerli və xarici qonaqlar üçün əsl kulinariya zövqü yaradır.</p>
+          <div class="restaurant-actions">
+            {% if contact_info %}
+            <a href="tel:{{ contact_info.phone_number }}" class="btn-reserve">
+              <i class="fas fa-phone"></i> Rezervasiya
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+
+      <article class="restaurant-card">
+        <div class="restaurant-cover" style="background: linear-gradient(135deg, #1565C0, #1976D2);">
+          <span class="restaurant-cover-placeholder" aria-hidden="true">💧</span>
+          <div class="restaurant-cover-overlay"></div>
+          <span class="restaurant-badge">Spa &amp; Restoran</span>
+        </div>
+        <div class="restaurant-body">
+          <h3 class="restaurant-name">Masallı Hotel İsti Su</h3>
+          <div class="restaurant-meta">
+            <span class="restaurant-location"><i class="fas fa-map-marker-alt"></i> Masallı</span>
+          </div>
+          <p class="restaurant-description">İsti su mənbəyi yanında yerləşən unikal restoran. Sağlamlıq turizmi ilə qidalanmanı birləşdirən bu məkan, isti su kənarında unudulmaz yemək təcrübəsi yaşadır. Təbii mühit və ləzzətli mətbəxin vəhdəti.</p>
+          <div class="restaurant-actions">
+            {% if contact_info %}
+            <a href="tel:{{ contact_info.phone_number }}" class="btn-reserve">
+              <i class="fas fa-phone"></i> Rezervasiya
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+
+      <article class="restaurant-card">
+        <div class="restaurant-cover" style="background: linear-gradient(135deg, #2E7D32, #388E3C);">
+          <span class="restaurant-cover-placeholder" aria-hidden="true">🌿</span>
+          <div class="restaurant-cover-overlay"></div>
+          <span class="restaurant-badge">Organic Fast Food</span>
+        </div>
+        <div class="restaurant-body">
+          <h3 class="restaurant-name">Kəndli Organic Fastfood</h3>
+          <div class="restaurant-meta">
+            <span class="restaurant-location"><i class="fas fa-map-marker-alt"></i> Masallı</span>
+          </div>
+          <p class="restaurant-description">Sürətli xidmət anlayışını təbii və organik məhsullarla birləşdirən innovativ konsepsiya. Kənd həyatının saf məhsulları əsasında hazırlanan fast food menüsü. Sağlam, sürətli və lezzetli.</p>
+          <div class="restaurant-actions">
+            {% if contact_info %}
+            <a href="tel:{{ contact_info.phone_number }}" class="btn-reserve">
+              <i class="fas fa-phone"></i> Rezervasiya
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+
+      <article class="restaurant-card">
+        <div class="restaurant-cover" style="background: linear-gradient(135deg, #6A1B9A, #8E24AA);">
+          <span class="restaurant-cover-placeholder" aria-hidden="true">☕</span>
+          <div class="restaurant-cover-overlay"></div>
+          <span class="restaurant-badge">Kafe</span>
+        </div>
+        <div class="restaurant-body">
+          <h3 class="restaurant-name">Kafe O</h3>
+          <div class="restaurant-meta">
+            <span class="restaurant-location"><i class="fas fa-map-marker-alt"></i> Masallı</span>
+          </div>
+          <p class="restaurant-description">Müasir dizayn anlayışı ilə yaradılmış şəhər kafesi. Keyfiyyətli içkilər, əl istehsalı tortlar və yüngül yemək menyusu ilə şəhərin ən məşhur istirahət nöqtəsinə çevrilmişdir. Hər kupası öz hekayəsini anladır.</p>
+          <div class="restaurant-actions">
+            {% if contact_info %}
+            <a href="tel:{{ contact_info.phone_number }}" class="btn-reserve">
+              <i class="fas fa-phone"></i> Rezervasiya
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+
+      <article class="restaurant-card">
+        <div class="restaurant-cover" style="background: linear-gradient(135deg, #BF360C, #E64A19);">
+          <span class="restaurant-cover-placeholder" aria-hidden="true">🌅</span>
+          <div class="restaurant-cover-overlay"></div>
+          <span class="restaurant-badge">Pub &amp; Lounge</span>
+        </div>
+        <div class="restaurant-body">
+          <h3 class="restaurant-name">Terras Masallı Pub Lounge</h3>
+          <div class="restaurant-meta">
+            <span class="restaurant-location"><i class="fas fa-map-marker-alt"></i> Masallı</span>
+          </div>
+          <p class="restaurant-description">Açıq terras dizaynı ilə fərqlənən pub lounge məkanı. Geniş panoramlı görünüş, canlı musiqi axşamları və seçilmiş içki-yemək menyusu. Axşam saatlarında Masallının ən canlı sosial məkanı.</p>
+          <div class="restaurant-actions">
+            {% if contact_info %}
+            <a href="tel:{{ contact_info.phone_number }}" class="btn-reserve">
+              <i class="fas fa-phone"></i> Rezervasiya
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="home-contact" role="region" aria-labelledby="rest-contact-heading">
+  <div class="container">
+    <div class="contact-content">
+      <h2 id="rest-contact-heading">Rezervasiya üçün əlaqə saxlayın</h2>
+      <p>Masanızı ayırtmaq və ya ətraflı məlumat almaq üçün bizimlə əlaqə saxlayın.</p>
+      <div class="contact-action">
+        {% include 'includes/contact_button.html' %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,581 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Nailiyyətlər - Ceyhan Nur{% endblock %}
+{% block description %}Ceyhan Nurun peşəkar nailiyyətləri: 28 qızıl medal, sertifikatlar, diplomlar və beynəlxalq mükafatlar.{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* ── Hero ── */
+  .achievements-hero {
+    background: linear-gradient(135deg, #1c1c1c 0%, #2d1b00 50%, #3d2000 100%);
+    color: white;
+    text-align: center;
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .achievements-hero::before {
+    content: "🏆";
+    position: absolute;
+    font-size: 30rem;
+    opacity: 0.03;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .achievements-hero .container { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #f59f00;
+    margin-bottom: 1.5rem;
+  }
+
+  .achievements-hero h1 {
+    font-size: 3.8rem;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .achievements-hero h1 span {
+    background: linear-gradient(135deg, #f59f00, #f03e3e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .achievements-hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── Trophy Counter Banner ── */
+  .trophy-banner {
+    background: linear-gradient(135deg, #f59f00 0%, #f03e3e 100%);
+    padding: 50px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .trophy-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  }
+
+  .trophy-counter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .trophy-counter-item {
+    color: white;
+  }
+
+  .trophy-counter-item .count {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+
+  .trophy-counter-item .count-emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .trophy-counter-item .count-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    opacity: 0.9;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Main Grid Section ── */
+  .achievements-main {
+    padding: 90px 0;
+    background: #f8f9fa;
+  }
+
+  /* ── Gold Medals Spotlight ── */
+  .gold-medals-section {
+    margin-bottom: 5rem;
+  }
+
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .section-badge.gold {
+    background: linear-gradient(135deg, #f59f00, #e67700);
+    color: white;
+    box-shadow: 0 4px 15px rgba(245,159,0,0.4);
+  }
+
+  .section-badge.silver {
+    background: linear-gradient(135deg, #868e96, #495057);
+    color: white;
+  }
+
+  .section-badge.cert {
+    background: linear-gradient(135deg, #1971c2, #1864ab);
+    color: white;
+  }
+
+  .section-badge.award {
+    background: linear-gradient(135deg, #7950f2, #6741d9);
+    color: white;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+    color: #1a1a2e;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-subtext {
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Gold medal cards - big featured style */
+  .gold-medals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .medal-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    border: 2px solid transparent;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .medal-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  }
+
+  .medal-card.gold { border-color: #f59f00; }
+  .medal-card.gold::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f59f00, #f03e3e);
+  }
+
+  .medal-card.silver { border-color: #adb5bd; }
+  .medal-card.silver::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #adb5bd, #495057);
+  }
+
+  .medal-card.cert { border-color: #4dabf7; }
+  .medal-card.cert::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4dabf7, #1971c2);
+  }
+
+  .medal-card.award { border-color: #9775fa; }
+  .medal-card.award::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #9775fa, #7950f2);
+  }
+
+  .medal-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .medal-icon-wrap.gold-bg { background: linear-gradient(135deg, #fff3bf, #ffd43b); }
+  .medal-icon-wrap.silver-bg { background: linear-gradient(135deg, #e9ecef, #ced4da); }
+  .medal-icon-wrap.cert-bg { background: linear-gradient(135deg, #d0ebff, #74c0fc); }
+  .medal-icon-wrap.award-bg { background: linear-gradient(135deg, #e5dbff, #b197fc); }
+
+  .medal-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .medal-issuer {
+    font-size: 0.82rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .medal-competition {
+    font-size: 0.82rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-style: italic;
+  }
+
+  .medal-description {
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.6;
+    flex: 1;
+    margin-top: 0.5rem;
+  }
+
+  .medal-year-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 3px 12px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    background: #f8f9fa;
+    color: #868e96;
+    align-self: flex-start;
+  }
+
+  /* Fallback — 28 gold medals display */
+  .medals-fallback-counter {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    border: 2px solid #f59f00;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .medals-fallback-counter::before {
+    content: "🥇";
+    position: absolute;
+    font-size: 15rem;
+    opacity: 0.04;
+    bottom: -2rem;
+    right: -2rem;
+    pointer-events: none;
+  }
+
+  .big-medal-number {
+    display: block;
+    font-size: 7rem;
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, #f59f00, #e67700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .big-medal-label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .medals-fallback-counter p {
+    color: #888;
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .medals-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .medals-row span {
+    font-size: 2rem;
+    animation: medal-shine 1s ease-in-out infinite alternate;
+    animation-delay: calc(var(--i) * 0.1s);
+  }
+
+  @keyframes medal-shine {
+    from { filter: brightness(1); }
+    to   { filter: brightness(1.3) drop-shadow(0 0 6px #f59f00); }
+  }
+
+  /* ── Certs & Diplomas grid ── */
+  .certs-section {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 2px solid #eee;
+  }
+
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Image modal */
+  .medal-img-thumb {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .medal-img-thumb:hover { opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    .achievements-hero h1 { font-size: 2.4rem; }
+    .trophy-counter-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .gold-medals-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .trophy-counter-grid { grid-template-columns: repeat(2, 1fr); }
+    .big-medal-number { font-size: 5rem; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="achievements-hero" role="banner">
+  <div class="container">
+    <span class="hero-eyebrow">✦ Peşəkar Nailiyyətlər ✦</span>
+    <h1>İşdə qazanılan<br><span>nailiyyətlər</span></h1>
+    <p>İllər boyu kulinariya sahəsindəki fədakarlıq, yarışmalardakı uğurlar və peşəkar tanınma</p>
+  </div>
+</section>
+
+<!-- Trophy Counter Banner -->
+<section class="trophy-banner" role="region" aria-label="Nailiyyət statistikası">
+  <div class="container">
+    <div class="trophy-counter-grid">
+      <div class="trophy-counter-item">
+        <span class="count-emoji">🥇</span>
+        <span class="count">28</span>
+        <span class="count-label">Qızıl Medal</span>
+      </div>
+      <div class="trophy-counter-item">
+        <span class="count-emoji">🏆</span>
+        <span class="count">{{ total_medals|default:"28" }}+</span>
+        <span class="count-label">Ümumi Medal</span>
+      </div>
+      <div class="trophy-counter-item">
+        <span class="count-emoji">📜</span>
+        <span class="count">{{ certificates.count|default:"10" }}+</span>
+        <span class="count-label">Sertifikat</span>
+      </div>
+      <div class="trophy-counter-item">
+        <span class="count-emoji">🌍</span>
+        <span class="count">5+</span>
+        <span class="count-label">Veriliş</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Achievements -->
+<section class="achievements-main" role="region" aria-labelledby="achievements-heading">
+  <div class="container">
+
+    <!-- Gold Medals -->
+    <div class="gold-medals-section">
+      <span class="section-badge gold">🥇 Qızıl Medallar</span>
+      <h2 class="section-heading" id="achievements-heading">28 Qızıl Medal</h2>
+      <p class="section-subtext">Azərbaycan və beynəlxalq kulinariya yarışmalarında qazanılan qızıl medallar</p>
+
+      {% if gold_medals %}
+      <div class="gold-medals-grid">
+        {% for item in gold_medals %}
+        <div class="medal-card gold" role="article">
+          <div class="medal-icon-wrap gold-bg" aria-hidden="true">🥇</div>
+          <h3 class="medal-title">{{ item.title }}</h3>
+          {% if item.issuer %}<p class="medal-issuer"><i class="fas fa-building" aria-hidden="true"></i>{{ item.issuer }}</p>{% endif %}
+          {% if item.competition_name %}<p class="medal-competition"><i class="fas fa-trophy" aria-hidden="true"></i>{{ item.competition_name }}</p>{% endif %}
+          {% if item.description %}<p class="medal-description">{{ item.description }}</p>{% endif %}
+          {% if item.year %}<span class="medal-year-tag">{{ item.year }}</span>{% endif %}
+          {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.title }}" class="medal-img-thumb" loading="lazy">{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      {% else %}
+      <!-- Fallback: Visual 28 gold medals showcase -->
+      <div class="medals-fallback-counter">
+        <span class="big-medal-number">28</span>
+        <p class="big-medal-label">Qızıl Medal 🥇</p>
+        <p>
+          Azərbaycan kulinariya yarışmalarında, beynəlxalq müsabiqələrdə və
+          peşəkar şou-proqramlarda qazanılan 28 qızıl medal — hər biri
+          Ceyhan Nurun sənədinə olan dərin bağlılığının sübutudur.
+        </p>
+        <div class="medals-row" aria-label="28 qızıl medal">
+          {% for i in "1234567890123456789012345678" %}
+          <span style="--i: {{ forloop.counter }}" title="Qızıl Medal #{{ forloop.counter }}">🥇</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Silver Medals -->
+    {% if silver_medals %}
+    <div class="certs-section">
+      <span class="section-badge silver">🥈 Gümüş Medallar</span>
+      <h2 class="section-heading">Gümüş Medallar</h2>
+      <div class="certs-grid">
+        {% for item in silver_medals %}
+        <div class="medal-card silver" role="article">
+          <div class="medal-icon-wrap silver-bg" aria-hidden="true">🥈</div>
+          <h3 class="medal-title">{{ item.title }}</h3>
+          {% if item.issuer %}<p class="medal-issuer"><i class="fas fa-building"></i>{{ item.issuer }}</p>{% endif %}
+          {% if item.competition_name %}<p class="medal-competition"><i class="fas fa-trophy"></i>{{ item.competition_name }}</p>{% endif %}
+          {% if item.description %}<p class="medal-description">{{ item.description }}</p>{% endif %}
+          {% if item.year %}<span class="medal-year-tag">{{ item.year }}</span>{% endif %}
+          {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.title }}" class="medal-img-thumb" loading="lazy">{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Certificates -->
+    {% if certificates or diplomas %}
+    <div class="certs-section">
+      <span class="section-badge cert">📜 Sertifikat &amp; Diploma</span>
+      <h2 class="section-heading">Sertifikatlar &amp; Diplomlar</h2>
+      <p class="section-subtext">Peşəkar inkişaf üzrə alınan rəsmi sertifikat və diplomlar</p>
+      <div class="certs-grid">
+        {% for item in certificates %}
+        <div class="medal-card cert" role="article">
+          <div class="medal-icon-wrap cert-bg" aria-hidden="true">📜</div>
+          <h3 class="medal-title">{{ item.title }}</h3>
+          {% if item.issuer %}<p class="medal-issuer"><i class="fas fa-university"></i>{{ item.issuer }}</p>{% endif %}
+          {% if item.description %}<p class="medal-description">{{ item.description }}</p>{% endif %}
+          {% if item.year %}<span class="medal-year-tag">{{ item.year }}</span>{% endif %}
+          {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.title }}" class="medal-img-thumb" loading="lazy">{% endif %}
+        </div>
+        {% endfor %}
+        {% for item in diplomas %}
+        <div class="medal-card cert" role="article">
+          <div class="medal-icon-wrap cert-bg" aria-hidden="true">🎓</div>
+          <h3 class="medal-title">{{ item.title }}</h3>
+          {% if item.issuer %}<p class="medal-issuer"><i class="fas fa-university"></i>{{ item.issuer }}</p>{% endif %}
+          {% if item.description %}<p class="medal-description">{{ item.description }}</p>{% endif %}
+          {% if item.year %}<span class="medal-year-tag">{{ item.year }}</span>{% endif %}
+          {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.title }}" class="medal-img-thumb" loading="lazy">{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Other Awards -->
+    {% if awards %}
+    <div class="certs-section">
+      <span class="section-badge award">🏆 Mükafatlar</span>
+      <h2 class="section-heading">Mükafatlar &amp; Fəxri Adlar</h2>
+      <div class="certs-grid">
+        {% for item in awards %}
+        <div class="medal-card award" role="article">
+          <div class="medal-icon-wrap award-bg" aria-hidden="true">{{ item.medal_icon }}</div>
+          <h3 class="medal-title">{{ item.title }}</h3>
+          {% if item.issuer %}<p class="medal-issuer"><i class="fas fa-building"></i>{{ item.issuer }}</p>{% endif %}
+          {% if item.description %}<p class="medal-description">{{ item.description }}</p>{% endif %}
+          {% if item.year %}<span class="medal-year-tag">{{ item.year }}</span>{% endif %}
+          {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.title }}" class="medal-img-thumb" loading="lazy">{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="home-contact" role="region" aria-labelledby="ach-contact-heading">
+  <div class="container">
+    <div class="contact-content">
+      <h2 id="ach-contact-heading">Peşəkar həllər üçün əlaqə saxlayın</h2>
+      <p>28 qızıl medal və illər üzrə təcrübəyə əsaslanan xidmətlər haqqında məlumat almaq üçün</p>
+      <div class="contact-action">
+        {% include 'includes/contact_button.html' %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

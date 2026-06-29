@@ -1,198 +1,185 @@
 <!doctype html>
 <html lang="az">
-  <head>
-    <!-- Load static files first -->
-    {% load static %}
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- Essential Meta Tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>{% block title %}Ceyhan Nur — Restoran İdarəçisi & Kulinariya Mütəxəssisi{% endblock %}</title>
+  <meta name="description" content="{% block description %}Azərbaycanın tanınmış restoran idarəçisi Ceyhan Nur. 5 restoran, 28 qızıl medal, 5 TV verilişi. Masallı Hotel, Kəndli Organic, Kafe O, Terras Pub Lounge.{% endblock %}" />
+  <meta name="keywords" content="{% block keywords %}Ceyhan Nur, restoran idarəçisi, Masallı Hotel Restoran, kulinariya, aşpaz, Azərbaycan{% endblock %}" />
+  <meta name="author" content="Ceyhan Nur" />
+  <meta name="robots" content="index, follow" />
 
-    <!-- SEO Meta Tags -->
-    <title>
-      {% block title %}Ceyhan Nur - Peşəkar Chef və Restoran Mütəxəssisi{% endblock %}
-    </title>
-    <meta
-      name="description"
-      content="{% block description %}Peşəkar restoran idarəçiliyi və musiqi təlimi xidmətləri. Kulinariya məsləhətçiliği və müğənni inkişafı sahələrində təcrübəli mütəxəssis.{% endblock %}"
-    />
-    <meta
-      name="keywords"
-      content="{% block keywords %}restoran idarəçiliği, musiqi təlimi, kulinariya məsləhətçiliği, müğənni inkişafı, Jeykhan{% endblock %}"
-    />
-    <meta name="author" content="Jeykhan" />
-    <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="{% block og_title %}Ceyhan Nur — Restoran İdarəçisi{% endblock %}" />
+  <meta property="og:description" content="{% block og_description %}Azərbaycanın tanınmış restoran idarəçisi. 5 restoran, 28 qızıl medal.{% endblock %}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}" />
+  <meta property="og:locale" content="az_AZ" />
 
-    <!-- Open Graph Meta Tags -->
-    <meta
-      property="og:title"
-      content="{% block og_title %}Jeykhan - Restoran İdarəçiliyi və Musiqi Təlimi{% endblock %}"
-    />
-    <meta
-      property="og:description"
-      content="{% block og_description %}Peşəkar restoran idarəçiliyi və musiqi təlimi xidmətləri. Kulinariya məsləhətçiliği və müğənni inkişafı sahələrində təcrübəli mütəxəssis.{% endblock %}"
-    />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}"
-    />
-    <meta property="og:site_name" content="Jeykhan Portfolio" />
-    <meta property="og:locale" content="az_AZ" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary" />
-    <meta
-      name="twitter:title"
-      content="{% block twitter_title %}Jeykhan - Restoran İdarəçiliyi və Musiqi Təlimi{% endblock %}"
-    />
-    <meta
-      name="twitter:description"
-      content="{% block twitter_description %}Peşəkar restoran idarəçiliyi və musiqi təlimi xidmətləri. Kulinariya məsləhətçiliyi və müğənni inkişafı sahələrində təcrübəli mütəxəssis.{% endblock %}"
-    />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/components.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
 
-    <!-- Favicon and Icons -->
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="{% static 'images/favicon.ico' %}"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="{% static 'images/apple-touch-icon.png' %}"
-    />
+  {% block extra_css %}{% endblock %}
 
-    <!-- Preconnect for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ceyhan Nur",
+    "jobTitle": "Restoran İdarəçisi və Kulinariya Mütəxəssisi",
+    "description": "Azərbaycanın tanınmış restoran idarəçisi. 5 restoran, 28 qızıl medal.",
+    "knowsAbout": ["Restoran İdarəçiliyi","Kulinariya","Menyu İnkişafı","Heyət İdarəetməsi"],
+    "areaServed": "Azerbaijan",
+    "worksFor": [
+      {"@type":"Organization","name":"Masallı Hotel Restoran"},
+      {"@type":"Organization","name":"Masallı Hotel İsti Su"},
+      {"@type":"Organization","name":"Kəndli Organic Fastfood"},
+      {"@type":"Organization","name":"Kafe O"},
+      {"@type":"Organization","name":"Terras Masallı Pub Lounge"}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Ana məzmuna keç</a>
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/components.css' %}" />
+  <!-- NAVBAR -->
+  <header class="navbar-header" role="banner">
+    <nav class="navbar" role="navigation" aria-label="Əsas naviqasiya">
+      <div class="nav-container">
 
-    {% block extra_css %}{% endblock %}
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Ceyhan Nur",
-        "jobTitle": "Peşəkar Chef və Restoran İdarəçiliyi Mütəxəssisi",
-        "description": "Peşəkar restoran idarəçiliyi və musiqi təlimi xidmətləri təqdim edən mütəxəssis",
-        "knowsAbout": [
-          "Restoran İdarəçiliği",
-          "Kulinariya Məsləhətçiliği",
-          "Musiqi Təlimi",
-          "Müğənni İnkişafı"
-        ],
-        "serviceType": ["Restaurant Management", "Music Training"],
-        "areaServed": "Azerbaijan"
-      }
-    </script>
-  </head>
-  <body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">Ana məzmuna keç</a>
-
-    <header role="banner">
-      <nav class="navbar" role="navigation" aria-label="Ana naviqasiya">
-        <div class="nav-container">
-          <div class="nav-logo">
-            <a href="{% url 'home:home' %}" aria-label="Ana səhifəyə qayıt"
-              >Ceyhan Nur</a
-            >
-          </div>
-          <ul class="nav-menu" role="menubar">
-            <li class="nav-item" role="none">
-              <a
-                href="{% url 'home:home' %}"
-                class="nav-link"
-                role="menuitem"
-                {%
-                if
-                request.resolver_match.url_name=""
-                ="home"
-                %}
-                aria-current="page"
-                {%
-                endif%}
-              >
-                Ana Səhifə
-              </a>
-            </li>
-            <li class="nav-item" role="none">
-              <a
-                href="{% url 'services:services' %}"
-                class="nav-link"
-                role="menuitem"
-                {%
-                if
-                request.resolver_match.url_name=""
-                ="services"
-                %}aria-current="page"
-                {%
-                endif
-                %}
-              >
-                Xidmətlər
-              </a>
-            </li>
-            <li class="nav-item" role="none">
-              <a
-                href="{% url 'about:about' %}"
-                class="nav-link"
-                role="menuitem"
-                {%
-                if
-                request.resolver_match.url_name=""
-                ="about"
-                %}aria-current="page"
-                {%
-                endif
-                %}
-              >
-                Haqqında
-              </a>
-            </li>
-          </ul>
-          <button
-            class="nav-toggle"
-            id="mobile-menu"
-            aria-label="Mobil menyunu aç/bağla"
-            aria-expanded="false"
-          >
-            <span class="bar" aria-hidden="true"></span>
-            <span class="bar" aria-hidden="true"></span>
-            <span class="bar" aria-hidden="true"></span>
-          </button>
+        <div class="nav-logo">
+          <a href="{% url 'home:home' %}" aria-label="Ana səhifə">
+            <span class="logo-text">Ceyhan Nur</span>
+          </a>
         </div>
-      </nav>
-    </header>
 
-    <main id="main-content" role="main">
-      {% block content %} {% endblock %}
-    </main>
+        <ul class="nav-menu" id="nav-menu" role="menubar">
+          <li role="none">
+            <a href="{% url 'home:home' %}"
+               class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+               {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>
+              <i class="fas fa-home" aria-hidden="true"></i> Ana Səhifə
+            </a>
+          </li>
+          <li role="none">
+            <a href="{% url 'about:about' %}"
+               class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+               {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>
+              <i class="fas fa-user" aria-hidden="true"></i> Haqqımda
+            </a>
+          </li>
+          <li role="none">
+            <a href="{% url 'restaurants:restaurants' %}"
+               class="nav-link {% if request.resolver_match.url_name == 'restaurants' %}active{% endif %}"
+               {% if request.resolver_match.url_name == 'restaurants' %}aria-current="page"{% endif %}>
+              <i class="fas fa-utensils" aria-hidden="true"></i> Restoranlar
+            </a>
+          </li>
+          <li role="none">
+            <a href="{% url 'projects:projects' %}"
+               class="nav-link {% if request.resolver_match.url_name == 'projects' %}active{% endif %}"
+               {% if request.resolver_match.url_name == 'projects' %}aria-current="page"{% endif %}>
+              <i class="fas fa-tv" aria-hidden="true"></i> Layihələr
+            </a>
+          </li>
+          <li role="none">
+            <a href="{% url 'achievements:achievements' %}"
+               class="nav-link {% if request.resolver_match.url_name == 'achievements' %}active{% endif %}"
+               {% if request.resolver_match.url_name == 'achievements' %}aria-current="page"{% endif %}>
+              <i class="fas fa-medal" aria-hidden="true"></i> Nailiyyətlər
+            </a>
+          </li>
+          <li role="none">
+            <a href="{% url 'services:services' %}"
+               class="nav-link {% if request.resolver_match.url_name == 'services' %}active{% endif %}"
+               {% if request.resolver_match.url_name == 'services' %}aria-current="page"{% endif %}>
+              <i class="fas fa-concierge-bell" aria-hidden="true"></i> Xidmətlər
+            </a>
+          </li>
+        </ul>
 
-    <footer role="contentinfo">
-      <div class="footer-container">
-        <p>&copy; 2026 Ceyhan Nur. Bütün hüquqlar qorunur.</p>
-        <nav class="footer-nav" aria-label="Footer naviqasiyası">
-          <ul>
-            <li><a href="{% url 'home:home' %}">Ana Səhifə</a></li>
-            <li><a href="{% url 'services:services' %}">Xidmətlər</a></li>
-            <li><a href="{% url 'about:about' %}">Haqqında</a></li>
-          </ul>
-        </nav>
+        <button class="nav-toggle" id="mobile-menu"
+                aria-label="Menyunu aç/bağla"
+                aria-expanded="false"
+                aria-controls="nav-menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
       </div>
-    </footer>
+    </nav>
+  </header>
 
-    <!-- JavaScript Files -->
-    <script src="{% static 'js/main.js' %}" defer></script>
-    <script src="{% static 'js/contact.js' %}" defer></script>
-    {% block extra_js %}{% endblock %}
-  </body>
+  <main id="main-content" role="main">{% block content %}{% endblock %}</main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Ceyhan Nur</h3>
+          <p>Azərbaycanın tanınmış restoran idarəçisi. 5 məkan, 28 qızıl medal, beynəlxalq TV verilişlərinin iştirakçısı.</p>
+          <div style="margin-top: 1rem;">
+            {% if contact_info %}
+            <a href="tel:{{ contact_info.phone_number }}"
+               style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);color:#D4AF37;padding:10px 18px;border-radius:30px;font-size:0.88rem;font-weight:600;text-decoration:none;transition:all 0.3s ease;"
+               onmouseover="this.style.background='rgba(212,175,55,0.2)'"
+               onmouseout="this.style.background='rgba(212,175,55,0.1)'">
+              <i class="fas fa-phone"></i> {{ contact_info.phone_number }}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Keçidlər</h4>
+          <ul>
+            <li><a href="{% url 'restaurants:restaurants' %}">Restoranlar</a></li>
+            <li><a href="{% url 'projects:projects' %}">Layihələr</a></li>
+            <li><a href="{% url 'achievements:achievements' %}">Nailiyyətlər</a></li>
+            <li><a href="{% url 'services:services' %}">Xidmətlər</a></li>
+            <li><a href="{% url 'about:about' %}">Haqqımda</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Əlaqə</h4>
+          <div class="footer-contact">
+            {% if contact_info %}
+            <p><i class="fas fa-phone"></i> {{ contact_info.phone_number }}</p>
+            {% if contact_info.email %}
+            <p><i class="fas fa-envelope"></i> {{ contact_info.email }}</p>
+            {% endif %}
+            {% if contact_info.address %}
+            <p><i class="fas fa-map-marker-alt"></i> {{ contact_info.address }}</p>
+            {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Ceyhan Nur. Bütün hüquqlar qorunur.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
 </html>
